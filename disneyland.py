@@ -107,7 +107,12 @@ def read_input(message,config):
             return query+": "+str(times[query])
         else:
             return "I couldn't understand "+query+"."
-        
+    if messageSplit[1] == "help":
+        lines =["Summary: Get a list of wait times for the rides specifed in the config file.",
+                "  Usage: Disneyland summary",
+                "Time: Get the wait time for a specific ride.",
+                "  Usage: Disneyland time <ride>"]
+        return "\n".join(lines)        
 
 
 if __name__ == "__main__":

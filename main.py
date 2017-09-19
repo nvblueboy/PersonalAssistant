@@ -15,7 +15,7 @@ def main():
     except:
         print("There was an issue with your authorized email addresses. Is your configuration set up properly?")
         quit()
-    admin = config["email"]["admin"]
+    admin = [config["email"]["admin"]]
     try:
         digest = time.strptime(config["email"]["digest"],"%I:%M %p")
     except:
@@ -64,7 +64,7 @@ def process_message(message,config):
     #Determine where to send the reply.
     reply = message[0]
     if config["email"]["singleReply"].lower() == "yes":
-        reply = config["email"]["admin"]
+        reply = [config["email"]["admin"]]
 
 
     if message_body == "quit":
@@ -121,6 +121,7 @@ def process_message(message,config):
         out = traffic.read_input(message_body,config);
         print("Me: "+out)
         send_text(config, reply, out)
+        return True
     else:
         print("Couldn't understand message: "+message_body)
         return True

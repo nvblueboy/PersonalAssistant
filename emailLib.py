@@ -64,10 +64,8 @@ def send_email(user,pwd,to,subject,body,smtp_addr):
     email_text = """\
     From: %s
     To: %s
-    Subject: %s
-
-    %s
-    """ % (_from, ", ".join(to), subject, body)
+    Subject: %s""" % (_from, ", ".join(to), subject)
+    email_text=email_text+"\n\n"+body
 
     try:
         server = smtplib.SMTP_SSL(smtp_addr,465)
