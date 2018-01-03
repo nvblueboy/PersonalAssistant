@@ -3,7 +3,7 @@
 # Version 0.1
 
 #Local imports
-import emailLib, weather, news, calendarLib, reminders, disneyland, reddit, traffic
+import emailLib, weather, news, calendarLib, reminders, disneyland, reddit, traffic, cryptocurrency
 #Python imports
 import configparser, time, traceback
 
@@ -119,6 +119,11 @@ def process_message(message,config):
         return True
     elif split_msg[0] == "traffic":
         out = traffic.read_input(message_body,config);
+        print("Me: "+out)
+        send_text(config, reply, out)
+        return True
+    elif split_msg[0] == "cryptocurrency" or split_msg[0] == "crypto":
+        out = cryptocurrency.read_input(message_body,config)
         print("Me: "+out)
         send_text(config, reply, out)
         return True
